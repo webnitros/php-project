@@ -6,8 +6,4 @@ services:
       - SYS_PTRACE
     working_dir: /app
     volumes:
-      - '.:/app'
-    networks:
-      - php-project
-networks:
-  php-project:
+      - '.:/var/www/html'
