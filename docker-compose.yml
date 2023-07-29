@@ -3,8 +3,6 @@ volumes:
   data:
 services:
   app:
-    build:
-      context: ./docker/app
     volumes:
       - '.:/app'
     cap_add:
