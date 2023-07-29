@@ -4,9 +4,6 @@ FROM php:$PHP_VERSION-fpm-alpine
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# копируем директорию с сайтом
-COPY . /app
-
 WORKDIR /app
 
 
@@ -32,8 +29,9 @@ RUN apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev lib
 RUN composer global config minimum-stability alpha
 ENV PATH=/root/.composer/vendor/bin:$PATH
 
-RUN touch /var/log/cron.log
+# копируем директорию с сайтом
+COPY . /app
 
-RUN composer install --prefer-source --no-interaction
+RUN composer install
 
 CMD php-fpm -R
