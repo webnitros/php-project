@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  app:
+    build:
+      context: ./../../
+      dockerfile: ./docker/php/Dockerfile
+      args:
+        - PHP_VERSION=${PHP_VERSION:-7.4}
+    cap_add:
+      - SYS_PTRACE
+    working_dir: /app
