@@ -11,13 +11,5 @@ services:
       - '.:/app'
     networks:
       - php-project
-  composer:
-    image: "composer"
-    volumes:
-      - '.:/app'
-    depends_on:
-      - app
-    command: install
-    working_dir: /app
 networks:
   php-project:
