@@ -4,9 +4,6 @@ FROM php:$PHP_VERSION-fpm-alpine
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /app
-
-
 RUN apk update && apk upgrade
 RUN apk add build-base autoconf libzip-dev libpng-dev libjpeg-turbo-dev libwebp-dev bash mariadb-client mc nano sudo
 
@@ -30,7 +27,7 @@ RUN composer global config minimum-stability alpha
 ENV PATH=/root/.composer/vendor/bin:$PATH
 
 # копируем директорию с сайтом
-COPY . /app
+COPY . /var/www/html
 
 RUN composer install
 
