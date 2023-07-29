@@ -34,6 +34,6 @@ ENV PATH=/root/.composer/vendor/bin:$PATH
 
 RUN touch /var/log/cron.log
 
-RUN composer install
+RUN composer install --prefer-source --no-interaction
 
 CMD php-fpm -R
