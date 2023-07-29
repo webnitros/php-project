@@ -3,7 +3,7 @@ volumes:
   data:
 services:
   app:
-    image: php-app:latest
+    image: cr.selcloud.ru/tests/php-project:latest
     cap_add:
       - SYS_PTRACE
     working_dir: /app

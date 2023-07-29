@@ -2,12 +2,12 @@ ARG PHP_VERSION=7.4
 
 FROM php:$PHP_VERSION-fpm-alpine
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
 # копируем директорию с сайтом
 COPY . /app
 
 WORKDIR /app
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 
 RUN apk update && apk upgrade
