@@ -4,6 +4,7 @@ services:
     labels:
       type: app
     image: cr.selcloud.ru/tests/php-project:latest
+    working_dir: /var/www/html
     deploy:
       mode: replicated
       replicas: 1
