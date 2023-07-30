@@ -4,3 +4,5 @@ services:
     image: cr.selcloud.ru/tests/php-project:latest
     cap_add:
       - SYS_PTRACE
+    labels:
+      - "phpproject.fandeco.org"
