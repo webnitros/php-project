@@ -16,7 +16,7 @@ services:
       mode: replicated
       replicas: 1
     ports:
-      - '${FORWARD_DB_PORT:-13306}:3306'
+      - '${FORWARD_DB_PORT:-0}:3306'
     environment:
       MYSQL_ROOT_PASSWORD: '${DB_PASSWORD:-test}'
       MYSQL_ROOT_HOST: "%"
