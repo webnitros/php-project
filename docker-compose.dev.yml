@@ -7,7 +7,6 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-    container_name: php
     volumes:
       - '.:/var/www/html'
     networks:
