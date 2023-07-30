@@ -7,7 +7,6 @@ services:
     deploy:
       mode: replicated
       replicas: 2
-    container_name: php
     networks:
       - sail
   mysql:
