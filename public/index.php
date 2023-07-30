@@ -9,11 +9,9 @@
 define('BASE_DIR', dirname(__FILE__,2) . '/');
 
 require_once BASE_DIR . 'vendor/autoload.php';
-$appClass = 'modY';
 $envfile = BASE_DIR . '.env';
 
 \App\Helpers\Env::loadFile($envfile);
-
 
 echo 'Hello world!' . PHP_EOL;
 
