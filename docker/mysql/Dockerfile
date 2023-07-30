@@ -1,6 +1,6 @@
 FROM mysql:latest
 
-# Установка переменных окружения MySQL
+# Установка переменных окружения MySQL 1
 ENV MYSQL_ROOT_PASSWORD=test
 ENV MYSQL_DATABASE=test
 ENV MYSQL_USER=test
