@@ -4,5 +4,5 @@ services:
     image: cr.selcloud.ru/tests/php-project:latest
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 3
     container_name: php
