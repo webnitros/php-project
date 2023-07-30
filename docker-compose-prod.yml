@@ -17,6 +17,8 @@ services:
       replicas: 1
     ports:
       - '${FORWARD_DB_PORT:-0}:3306'
+    volumes:
+      - 'sail-mysql:/var/lib/mysql'
     environment:
       MYSQL_ROOT_PASSWORD: '${DB_PASSWORD:-test}'
       MYSQL_ROOT_HOST: "%"
@@ -28,3 +30,6 @@ services:
       test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
       retries: 3
       timeout: 5s
+volumes:
+  sail-mysql:
+    driver: local
