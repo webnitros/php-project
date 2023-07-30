@@ -11,7 +11,7 @@ services:
   mysql:
     labels:
       type: db
-    image: 'mysql/mysql-server:8.0'
+    image: cr.selcloud.ru/tests/mysql-project:latest
     deploy:
       mode: replicated
       replicas: 1
