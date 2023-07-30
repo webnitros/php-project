@@ -29,6 +29,6 @@ ENV PATH=/root/.composer/vendor/bin:$PATH
 # копируем директорию с сайтом
 COPY . /var/www/html
 
-RUN composer install
+RUN composer install --no-dev --no-interaction --no-scripts
 
 CMD php-fpm -R
