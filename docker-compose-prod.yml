@@ -1,8 +1,10 @@
 version: '3.9'
 services:
   php:
+    labels:
+      type: app
     image: cr.selcloud.ru/tests/php-project:latest
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 2
     container_name: php
