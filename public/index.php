@@ -20,31 +20,25 @@ echo 'DB_USERNAME: ' . getenv('DB_USERNAME');
 
 echo 'Подключение к DB' . PHP_EOL;
 
-$servername = "mysql"; // имя сервиса MySQL в вашем стеке
-$username = "root"; // имя пользователя MySQL
-$password = "password"; // пароль пользователя MySQL
-$dbname = "database"; // имя базы данных MySQL
+$host = getenv('DB_HOST');
+$db = getenv('DB_DATABASE');
+$user = getenv('DB_USERNAME');
+$password = getenv('DB_PASSWORD');
 
-// Создаем подключение
-$conn = new mysqli($servername, $username, $password, $dbname);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $password);
+    echo "Соединение с базой данных установлено";
 
-// Проверяем подключение
-if ($conn->connect_error) {
-    die("Ошибка подключения: " . $conn->connect_error);
-}
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Выполняем запросы к базе данных
-$sql = "SELECT * FROM ara3_categories";
-$result = $conn->query($sql);
+    $stmt = $pdo->query("SHOW TABLES");
+    $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-if ($result->num_rows > 0) {
-    // Обрабатываем результаты запроса
-    while ($row = $result->fetch_assoc()) {
-        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . PHP_EOL;
+    echo "Список таблиц:\n";
+    foreach ($tables as $table) {
+        echo $table . "\n";
     }
-} else {
-    echo "0 результатов" . PHP_EOL;
-}
 
-// Закрываем подключение
-$conn->close();
+} catch (PDOException $e) {
+    echo "Ошибка подключения к базе данных: " . $e->getMessage();
+}
