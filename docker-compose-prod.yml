@@ -15,6 +15,9 @@ services:
     deploy:
       mode: replicated
       replicas: 1
+      placement:
+        constraints:
+          - "node.role==manager"
     ports:
       - '${FORWARD_DB_PORT:-0}:3306'
     volumes:
