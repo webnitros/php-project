@@ -1,6 +1,0 @@
-version: '3.9'
-services:
-  app:
-    image: cr.selcloud.ru/tests/php-project:latest
-    cap_add:
-      - SYS_PTRACE
