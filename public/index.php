@@ -18,7 +18,7 @@ echo 'Hello world!' . PHP_EOL;
 echo 'DB_USERNAME: ' . getenv('DB_USERNAME');
 
 
-echo 'Подключение к DB' . PHP_EOL;
+echo 'Подключение к DB 11' . PHP_EOL;
 
 $host = getenv('DB_HOST');
 $db = getenv('DB_DATABASE');
