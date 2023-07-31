@@ -1,0 +1,34 @@
+Service labels
+Label	Value
+name
+com.docker.stack.image
+value
+traefik/whoami
+name
+com.docker.stack.namespace
+value
+traefik
+name
+traefik.enable
+value
+true
+name
+traefik.http.routers.whoami.entrypoints
+value
+websecure
+name
+traefik.http.routers.whoami.rule
+value
+(Host(`fandeco.org`) || Host(`www.fandeco.org`))
+name
+traefik.http.routers.whoami.service
+value
+whoamiservice
+name
+traefik.http.routers.whoami.tls.certresolver
+value
+letsencryptresolver
+name
+traefik.http.services.whoamiservice.loadbalancer.server.port
+value
+80
