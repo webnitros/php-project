@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  nginx:
+    image: nginx:1.22
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx.rule=Host(`fandeco.org`)"
+      - "traefik.http.routers.nginx.entrypoints=web"
+      - "traefik.http.services.nginx.loadbalancer.server.port=80"
