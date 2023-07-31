@@ -1,42 +1,8 @@
-version: '3.9'
+version: '3'
 services:
-  php:
-    image: cr.selcloud.ru/tests/php-project:latest
-    deploy:
-      mode: replicated
-      replicas: 1
-    volumes:
-      - '.:/var/www/html'
-    networks:
-      - sail
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.php.rule=Host(`php.fandeco.org`)"
-      - "traefik.http.routers.php.entrypoints=web"
-      - "traefik.http.services.php.loadbalancer.server.port=80"
-      - "traefik.http.services.php.loadbalancer.server.scheme=http"
-  mysql:
-    image: 'mysql/mysql-server:8.0'
+  nginx:
+    image: nginx:1.22
     ports:
-      - '${FORWARD_DB_PORT:-3306}:3306'
-    environment:
-      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_ROOT_HOST: "%"
-      MYSQL_DATABASE: '${DB_DATABASE}'
-      MYSQL_USER: '${DB_USERNAME}'
-      MYSQL_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      - 80:80
     volumes:
-      - 'sail-mysql:/var/lib/mysql'
-    networks:
-      - sail
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
-      retries: 3
-      timeout: 5s
-networks:
-  sail:
-    driver: bridge
-volumes:
-  sail-mysql:
-    driver: local
+      - ./nginx.conf:/etc/nginx/nginx.conf
