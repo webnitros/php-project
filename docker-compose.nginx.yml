@@ -3,6 +3,15 @@ services:
   nginx:
     image: nginx:1.22
     labels:
-      - "traefik.http.routers.nginx.rule=Host(`example.com`)"
+      - "traefik.http.routers.nginx.rule=Host(`nginx.`)"
+      - "traefik.http.routers.nginx.entrypoints=http"
+      - "traefik.http.routers.nginx.middlewares=nginx-redirect"
+      - "traefik.http.middlewares.nginx-redirect.redirectscheme.scheme=https"
     ports:
       - 13900:80
+    networks:
+      - traefik_traefik-public
+
+networks:
+  traefik_traefik-public:
+    external: true
